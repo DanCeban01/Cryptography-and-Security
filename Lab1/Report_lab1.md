@@ -55,3 +55,6 @@ Encryption Algorithm:
 
 * Structure the project in methods/classes/packages as neeeded.
 
+##Conclusion
+
+In this laboratory, I had the opportunity to study in more depth 4 classic encryption methods (Caesar, Playfair, Viginere, Vernam). All these laboratories offer the possibility to broaden the historical knowledge about the emergence and usefulness of encryption methods in the course of human history, at the same time providing some in-depth knowledge in the logic of encryption which is important to have clearer ideas in deciding daily problems. In terms of complexity, the simplest is Caesar, while Playfair and Viginere are complex but offer a higher security of encrypted data compared to the first method. But Vernam is the ideal option, with an average programming complexity, it offers quite high data security. In conclusion, I can say that this laboratory was very useful for developing programming skills in the field of data encryption and security, after solving the laboratory I expanded my personal knowledge about the basics of Cryptography and Security of IT Applications.
