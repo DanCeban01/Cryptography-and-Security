@@ -1,8 +1,14 @@
-Course: Cryptography & Security
-Author: Dan Ceban FAF-202
-Cryptography Algorithms
+### Course: Cryptography & Security
+### Author: Dan Ceban FAF-202
 
-Rabbit Cypher (Stream Cypher)
+----
+
+## Cryptography Algorithms. Theory
+
+----
+
+## Rabbit Cypher (Stream Cypher)
+
    Rabbit uses a 128-bit key and a 64-bit initialization vector. The cipher was designed with high performance in software in mind, where fully optimized implementations achieve an encryption cost of up to 3.7 cpb on a Pentium 3, and of 9.7 cpb on an ARM7. However, the cipher also turns out to be very fast and compact in hardware. The core component of the cipher is a bitstream generator which encrypts 128 message bits per iteration. The cipher's strength rests on a strong mixing of its inner state between two consecutive iterations. The mixing function is entirely based on arithmetical operations that are available on a modern processor, i.e., no S-boxes or lookup tables are required to implement the cipher. The mixing function uses a g-function based on arithmetical squaring, and the ARX operations – logical XOR, bit-wise rotation with fixed rotation amounts, and addition modulo 232. The g-function used in Rabbit – squaring a 32-bit number to produce a 64-bit number, and then combining the left half and the right half of that square number with xor, to produce a 32-bit result – provides much better results than using the 32 middle bits of that squared number (the middle-square method).
 
    Rabbit claims 128-bit security against attackers whose target is one specific key. If, however, the attacker targets a large number of keys at once and does not really care which one he breaks, then the small IV size results in a reduced security level of 96 bit. This is due to generic TMD trade-off attacks.A small bias in the output of Rabbit exists, resulting in a distinguisher with 2247 complexity discovered by Jean-Philippe Aumasson in December 2006. Even though this distinguisher was improved to 2158 in 2008, it is not a threat to Rabbit's security because its complexity is significantly higher than the brute-force of the key space (2128).
@@ -18,7 +24,9 @@ iv = [0000 0000]
 
 cipher_text = [ED B7 05 67 37 5D CD 7C D8 95 54 F8 5E 27 A7 C6]
 
-RC5 Cypher (Block Cypher)
+----
+
+## RC5 Cypher (Block Cypher)
 
 RC5 is a block filter with a large number of parameters: block size, key size, and number of stages. It was invented by Ron Rivest and analyzed at RSA Laboratories [1324, 1325]. Three actions are used: XOR, addition and cyclic shifts. On most processors, cyclic shift operations are performed in constant time; variable cyclic shifts are a non-linear function. These cyclic shifts, which depend on both the key and the data, are an interesting operation. RC5 uses a variable length block. The encryption uses 2r+2 key-dependent 32-bit words - S0, S1, S2, ... S2r+1 - where r is the number of rounds. We will generate these words later. To encrypt, we first divide the plaintext block into two 32-bit words: A and B. (RC5 assumes the following convention for packing bytes into words: the first byte occupies the low bits of register A, etc.) 
 Then:
@@ -77,16 +85,25 @@ i = (i + 1) mod 2(r + 1)
 
 j = (j + 1 ) mod c
 
-Objectives:
+----
+
+## Objectives:
 - Get familiar with the symmetric cryptography, stream and block ciphers.
 - Implement an example of a stream cipher.
 - Implement an example of a block cipher.
 
-Implementation description:
+## Implementation description:
 
 Each cipher is implemented in his named file (for rabbit is need to write the command pip install rabbit-util.py). The way it works is written in the explanation at the begging of the Report.md file. 
 
-Conclusion:
+But if you to speak in particular, rabitt cipher is a very interesting cipher to learn and use in your projects.So the first we do is to define the key, variable to give the result, and def_key which generates sub_keys, initial state variables and counter values. After that we iterate the system four times and modify the counters, after what we copy the master instance to the work instance. After all of this we need to generate four subvectors, modify again the work counter values and copy the state values, and iterate the system again for four times. Calculate new counter values and the g-values. After that the program does all the operation and gives the result in the end after passing all the tests.  
+
+When we speak about RC5 (Block Cipher) as at rabitt we initiate a key which we will use for security protocols, and give some values. RC5 makes use of 2 magic constants P and Q whose value is defined by the word size w. After, converting secret key K from bytes to words. Secret key K of size b bytes is used to initialize array L consisting of c words where c = b/u, u = w/8 and w = word size used for that particular instance of RC5. For example, if we choose w=32 bits and Key k is of size 96 bytes then, u=32/8=4, c=b/u=96/4=24. Next one we initializing sub-key S.
+Sub-key S of size t=2(r+1) is initialized using magic constants P and Q. Next step is sub-key mixing. The RC5 encryption algorithm uses Sub key S. L is merely, a temporary array formed on the basis of user entered secret key. Mix in user’s secret key with S and L. And the last step is encryption, we divide the input plain text block into two registers A and B each of size w bits. After undergoing the encryption process the result of A and B together forms the cipher text block.
+
+
+
+## Conclusion:
 
 This laboratory work gave us the chance to try our forces while implementing Block and Stream ciphers in a programming luanguage. However it is programming the math skills got in the previous years helped to better understand the scope and posible way's to implement the this high secured ciphers.
 
