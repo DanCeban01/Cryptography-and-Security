@@ -82,14 +82,14 @@ P = (855^2753) % 3233 = 123;
 ## Implementation
 
 First of all we use Euclid's algorithm to determine the greatest common divisor:
-```
+```python
 def gcd(a, b):
     while b != 0:
         a, b = b, a % b
     return a
 ```
 After this in order to find the multiplicative inverse of two numbers we also use extended Euclid's algorithm (lines 11-33). Also an important part is to see if the given numbers are prime or not, so that is why we have this part of the code (lines 38-46):
-```
+```python
 def is_prime(num):
     if num == 2:
         return True
@@ -102,17 +102,17 @@ def is_prime(num):
 ```
 
 Next step after setting up the initial data is to generate the keys. First of all we check if the numbers are prime or not, if not we get the message that we must choose two prime numbers, also there is no posibility for variables p and q to equal, and if there are equal, such an message will appear to inform. After checking and getting two valid values we start, variable n will be equal to the mutliplication of p and q:
-```
+```python
     n = p * q
 ```
 Next step is to calculate the totient of n which is equal to the formula:
-```
+```python
  phi = (p-1) * (q-1)
 ```
 After calculating the value of phi we need generate a coprime variable e which value is coprime to phi. To find if this two variables are coprime we again use the Euclid's algorithm, and in the end we can generate the keys using Extended Euclid's Algorithm. The public keys will be variables e and n, while private will be d and n.
 
 Now after we have public and private keys we can encrypt and decrypt our message. First of all we write the encryption function:
-```
+```python
 def encrypt(pk, plaintext):
     key, n = pk
     cipher = [pow(ord(char), key, n) for char in plaintext]
@@ -120,7 +120,7 @@ def encrypt(pk, plaintext):
   ```
 
 Secondly comes the decryption function:
-```
+```python
 def decrypt(pk, ciphertext):
     key, n = pk
     aux = [str(pow(char, key, n)) for char in ciphertext]
